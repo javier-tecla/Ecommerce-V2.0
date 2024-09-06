@@ -1,0 +1,4 @@
+[06-Sep-2024 03:08:46 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$font_template in C:\xampp\htdocs\ecommerce-clonfactory\web\views\template.php on line 50
+[06-Sep-2024 03:08:46 Europe/Berlin] PHP Warning:  Attempt to read property "fontSkide" on null in C:\xampp\htdocs\ecommerce-clonfactory\web\views\template.php on line 50
+[06-Sep-2024 03:09:12 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$font_template in C:\xampp\htdocs\ecommerce-clonfactory\web\views\template.php on line 50
+[06-Sep-2024 03:09:12 Europe/Berlin] PHP Warning:  Attempt to read property "fontSlide" on null in C:\xampp\htdocs\ecommerce-clonfactory\web\views\template.php on line 50

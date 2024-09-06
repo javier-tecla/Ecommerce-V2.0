@@ -41,6 +41,13 @@ foreach (json_decode($template->keywords_template, true) as $key => $value) {
 
 $keywords = substr($keywords, 0, -2);
 
+/*================================================
+Datos en Objeto
+=============================================== */
+
+$fontFamily = json_decode($template->fonts_template)->fontFamily;
+$fontBody = json_decode($template->fonts_template)->fontBody;
+$fontSlide = json_decode($template->fonts_template)->fontSlide;
 
 ?>
 
@@ -64,9 +71,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <?php echo urldecode($fontFamily) ?>
 
   <!-- CSS -->
 
@@ -84,6 +89,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="<?php echo $path ?>views/assets/css/template/template.css">
   <link rel="stylesheet" href="<?php echo $path ?>views/assets/css/products/products.css">
 
+<style>
+
+  body {
+      font-family: '<?php echo $fontBody ?>', sans-serif;
+  }
+
+    .slideOpt h1,.slideOpt h2, .slideOpt h3 {
+      font-family: '<?php echo $fontSlide ?>', sans-serif;
+  }
+
+
+</style>
 
   <!-- JS -->
 
