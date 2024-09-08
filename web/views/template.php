@@ -1,6 +1,13 @@
 <?php
 
 /*================================================
+Iniciar variables de sesión
+=============================================== */
+
+ob_start();
+session_start();
+
+/*================================================
 Variable Path
 =============================================== */
 
@@ -154,7 +161,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     include "modules/top.php";
     include "modules/navbar.php";
-    include "modules/sidebar.php";
+
+    if (isset($_SESSION["admin"])){
+
+      include "modules/sidebar.php";
+    }
 
     if (!empty($routesArray[0])) {
 
