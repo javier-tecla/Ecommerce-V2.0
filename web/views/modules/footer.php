@@ -184,25 +184,25 @@
 
        <div class="col small my-3 my-lg-0">
 
-       <h4>RESUELVA SU INQUIETUD</h4>
+         <h4>RESUELVA SU INQUIETUD</h4>
 
-       <form role="form" method="post">
+         <form role="form" method="post">
 
-          <input type="text" id="nombreContactenos" name="nombreContactenos" class="form-control" placeholder="Escriba su nombre" require>
+           <input type="text" id="nombreContactenos" name="nombreContactenos" class="form-control" placeholder="Escriba su nombre" require>
 
-          <br>
+           <br>
 
-          <input type="email" id="emailContactenos" name="emailContactenos" class="form-control" placeholder="Escriba su correo electrónico" require>
+           <input type="email" id="emailContactenos" name="emailContactenos" class="form-control" placeholder="Escriba su correo electrónico" require>
 
-          <br>
+           <br>
 
-          <textarea id="mensajeContactenos" name="mensajeContactenos" class="form-control" placeholder="Escriba su mensaje" rows="5" require></textarea>
+           <textarea id="mensajeContactenos" name="mensajeContactenos" class="form-control" placeholder="Escriba su mensaje" rows="5" require></textarea>
 
-          <br>
+           <br>
 
-          <input type="submit" value="Enviar" class="btn btn-default templateColor float-end border-0 templateColor">
+           <input type="submit" value="Enviar" class="btn btn-default templateColor float-end border-0 templateColor">
 
-       </form>
+         </form>
 
        </div>
 
@@ -215,58 +215,32 @@
  <!-- Main Footer -->
  <footer class="main-footer topColor">
 
-    <div class="container">
-      <!-- To the right -->
-      <div class="float-end">
+   <div class="container">
+     <!-- To the right -->
+     <div class="float-end">
 
-      <div class="d-flex justify-content-center" style="line-height:0px">
+       <div class="d-flex justify-content-center" style="line-height:0px">
 
-                    <div class="p-2">
+         <?php foreach ($socials as $key => $value): ?>
 
-                        <a href="https://facebook.com" target="_blank" class="text-white">
+           <div class="p-2">
 
-                            <i class="fab fa-facebook-f"></i>
+             <a href="<?php echo $value->url_social ?>" target="_blank">
 
-                        </a>
+               <i class="<?php echo $value->icon_social ?> <?php echo $value->color_social ?>"></i>
 
-                    </div>
+             </a>
 
-                    <div class="p-2">
+           </div>
 
-                        <a href="https://youtube.com" target="_blank" class="text-white">
+         <?php endforeach ?>
 
-                            <i class="fab fa-youtube"></i>
+       </div>
 
-                        </a>
 
-                    </div>
-
-                     <div class="p-2">
-
-                        <a href="https://twitter.com" target="_blank" class="text-white">
-
-                            <i class="fab fa-twitter"></i>
-
-                        </a>
-
-                    </div>
-
-                     <div class="p-2">
-
-                        <a href="https://instagram.com" target="_blank" class="text-white">
-
-                            <i class="fab fa-instagram"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-        
-
-      </div>
-      <!-- Default to the left -->
-      <small>&copy; <?php echo date("Y") ?> Todos los derechos reservados. Sitio elaborado por la Compañia.</small>
+     </div>
+     <!-- Default to the left -->
+     <small>&copy; <?php echo date("Y") ?> Todos los derechos reservados. Sitio elaborado por la Compañia.</small>
 
    </div>
  </footer>
