@@ -10,13 +10,12 @@ $path = TemplateController::path();
 Capturar las rutas de la URL
 =============================================== */
 
-$routesArray = explode("/",$_SERVER["REQUEST_URI"]);
+$routesArray = explode("/", $_SERVER["REQUEST_URI"]);
 array_shift($routesArray);
 
 foreach ($routesArray as $key => $value) {
-  $routesArray[$key] = explode("?",$value)[0];
+  $routesArray[$key] = explode("?", $value)[0];
 }
-echo '<pre>'; print_r($routesArray); echo '</pre>';
 
 /*================================================
 Solicitud GET de Template
@@ -26,13 +25,11 @@ $url = "templates?linkTo=active_template&equalTo=ok";
 $method = "GET";
 $fields = array();
 
-$template = CurlController::request($url,$method,$fields);
+$template = CurlController::request($url, $method, $fields);
 
 if ($template->status == 200) {
 
   $template = $template->results[0];
-  
-
 } else {
 
   //redireccionar a página 500
@@ -47,8 +44,7 @@ $keywords = null;
 
 foreach (json_decode($template->keywords_template, true) as $key => $value) {
 
-  $keywords .= $value.", ";
-
+  $keywords .= $value . ", ";
 }
 
 $keywords = substr($keywords, 0, -2);
@@ -109,28 +105,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="<?php echo $path ?>views/assets/css/template/template.css">
   <link rel="stylesheet" href="<?php echo $path ?>views/assets/css/products/products.css">
 
-<style>
-
-  body {
+  <style>
+    body {
       font-family: '<?php echo $fontBody ?>', sans-serif;
-  }
+    }
 
-    .slideOpt h1,.slideOpt h2, .slideOpt h3 {
+    .slideOpt h1,
+    .slideOpt h2,
+    .slideOpt h3 {
       font-family: '<?php echo $fontSlide ?>', sans-serif;
-  }
+    }
 
-  .topColor {
-  background-color: <?php echo $topColor->background ?>; 
-  color: <?php echo $topColor->color ?>;
-  }
+    .topColor {
+      background-color: <?php echo $topColor->background ?>;
+      color: <?php echo $topColor->color ?>;
+    }
 
-  .templateColor, .templateColor:hover, a.templateColor {
-      background: <?php echo $templateColor->background ?> !important; 
+    .templateColor,
+    .templateColor:hover,
+    a.templateColor {
+      background: <?php echo $templateColor->background ?> !important;
       color: <?php echo $templateColor->color ?> !important;
-  }
-
-
-</style>
+    }
+  </style>
 
   <!-- JS -->
 
@@ -158,7 +155,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     include "modules/top.php";
     include "modules/navbar.php";
     include "modules/sidebar.php";
-    include "pages/home/home.php";
+
+    if (!empty($routesArray[0])) {
+
+      if ($routesArray[0] == "admin") {
+        include "pages/admin/admin.php";
+      }
+    } else {
+
+      include "pages/home/home.php";
+    }
+
     include "modules/footer.php";
 
     ?>
