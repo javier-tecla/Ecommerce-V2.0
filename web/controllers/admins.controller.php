@@ -29,6 +29,29 @@ class AdminsController {
                     location.reload();
                 
                 </script>';
+
+            }else {
+
+                $error = null;
+
+                if($login->results == "Wrong email"){
+
+                    $error = "Correo no existe";
+
+                } else {
+
+                    $error = "Contraseña incorrecta";
+                }
+
+                echo '<div class="alert alert-danger mt-3">'.$error.'</div>
+                
+                <script>
+                
+                    fncFormatInputs();
+                    
+                </script>
+
+                ';
             }
 
         }
