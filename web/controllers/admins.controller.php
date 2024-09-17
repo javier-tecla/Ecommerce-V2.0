@@ -43,7 +43,7 @@ class AdminsController {
                     $error = "Contraseña incorrecta";
                 }
 
-                echo '<div class="alert alert-danger mt-3">'.$error.'</div>
+                echo '<div class="alert alert-danger mt-3 text-center">'.$error.'</div>
                 
                 <script>
                 
