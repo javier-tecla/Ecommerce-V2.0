@@ -1,14 +1,16 @@
 <?php
 
-class AdminsController {
+class AdminsController
+{
 
     /*================================================
     Login de administradores
     =============================================== */
 
-    public function login() {
+    public function login()
+    {
 
-        if (isset($_POST["loginAdminEmail"])){
+        if (isset($_POST["loginAdminEmail"])) {
 
             $url = "admins?login=true&suffix=admin";
             $method = "POST";
@@ -19,7 +21,7 @@ class AdminsController {
             );
 
             $login = CurlController::request($url, $method, $fields);
-            
+
             if ($login->status == 200) {
 
                 $_SESSION["admin"] = $login->results[0];
@@ -29,32 +31,38 @@ class AdminsController {
                     location.reload();
                 
                 </script>';
-
-            }else {
+            } else {
 
                 $error = null;
 
-                if($login->results == "Wrong email"){
+                if ($login->results == "Wrong email") {
 
                     $error = "Correo no existe";
-
                 } else {
 
                     $error = "Contraseña incorrecta";
                 }
 
-                echo '<div class="alert alert-danger mt-3 text-center">'.$error.'</div>
-                
-                <script>
+                if ($error) {
+                    echo '<div id="error-alert" class="alert alert-danger mt-3 text-center">' . $error . '</div>';
+                    echo '
+                    <script>
+                        // Ejecuta una función después de 3 segundos
+                        setTimeout(function() {
+                            var errorAlert = document.getElementById("error-alert");
+                            if (errorAlert) {
+                                // Oculta el mensaje de error
+                                errorAlert.style.display = "none";
+                            }
+                        }, 3000); // 3000 milisegundos = 3 segundos
                 
                     fncFormatInputs();
                     
                 </script>
 
                 ';
+                }
             }
-
         }
-
     }
 }
