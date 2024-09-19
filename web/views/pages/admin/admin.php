@@ -13,3 +13,5 @@ if (!isset($_SESSION["admin"])) {
 
 ?>
 
+<script src="<?php echo $path ?>views/assets/js/forms/forms.js"></script>
+
