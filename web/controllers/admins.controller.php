@@ -58,7 +58,7 @@ class AdminsController
                                 // Oculta el mensaje de error
                                 errorAlert.style.display = "none";
                             }
-                        }, 3000); // 5000 milisegundos = 5 segundos
+                        }, 5000); // 5000 milisegundos = 5 segundos
                 
                     fncFormatInputs();
                     
@@ -77,7 +77,7 @@ class AdminsController
                                 // Oculta el mensaje de error
                                 errorAlert.style.display = "none";
                             }
-                        }, 3000); // 5000 milisegundos = 5 segundos
+                        }, 5000); // 5000 milisegundos = 5 segundos
                 
                     fncFormatInputs();
                     
