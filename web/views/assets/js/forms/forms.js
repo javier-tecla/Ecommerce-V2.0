@@ -49,3 +49,39 @@ function validateJs(event, type) {
     }
 }
 
+/*=============================================================
+Función para recordar email en el login
+==============================================================*/
+
+function rememberEmail(event) {
+
+  console.log("event", event)
+
+    if(event.target.checked) {
+
+      localStorage.setItem("emailAdmin", $('[name="loginAdminEmail"]').val());
+      localStorage.setItem("checkRem", true);
+
+    }else{
+
+      localStorage.removeItem("emailAdmin");
+      localStorage.removeItem("checkRem");
+    }
+}
+
+function getEmail() {
+
+  if(localStorage.getItem("emailAdmin") != null) {
+
+    $('[name="loginAdminEmail"]').val(localStorage.getItem("emailAdmin"));
+  }
+
+  if(localStorage.getItem("checkRem") != null && localStorage.getItem("checkRem")) {
+
+    $("#remember").attr("checked", true);
+  }
+}
+
+getEmail();
+
+
