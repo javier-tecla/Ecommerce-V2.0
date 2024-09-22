@@ -10,8 +10,14 @@ class AdminsController
     public function login()
     {
 
-
         if (isset($_POST["loginAdminEmail"])) {
+
+            echo '<script>
+
+                fncMatPreloader("on");
+                fncSweetAlert("loading", "", "");
+
+            </script>';
 
             if (preg_match('/^[.a-zA-Z0-9_]+([.][.a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["loginAdminEmail"])) {
 
@@ -80,6 +86,7 @@ class AdminsController
                             }
                         }, 5000); // 5000 milisegundos = 5 segundos
                 
+                    fncSweerAlert("Error");
                     fncFormatInputs();
                     
                 </script>
@@ -98,6 +105,13 @@ class AdminsController
     public function resetPassword() {
 
         if (isset($_POST["resetPassword"])) {
+
+            echo '<script>
+            
+                fncMatPreloader("on");
+                fncSweetAlert("loading", "", "");
+
+            </script>';
 
             /*================================================
             Validamos la sintaxis de los campos
@@ -142,6 +156,51 @@ class AdminsController
 
                         if($updatePassword->status == 200) {
 
+
+                            $subject = 'Solicitud de nueva contraseña - Clon-factory';
+                            $email = $_POST["resetPassword"];
+                            $message = 'Su nueva contraseña: '.$newPassword;
+                            $link = TemplateController::path().'admin';
+
+                            $sendEmail = TemplateController::sendEmail($subject, $email, $message, $link);
+
+                            if ($sendEmail == "ok") {
+
+                                echo '<script>
+    
+                                
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "",
+                                    text: "Su nueva contraseña ha sido enviada con éxito, por favor revise su correo electrónico",
+                                    timer: 5000,
+                                    showConfirmButton: false
+                                });
+        
+                                fncMatPreloader("off");
+                                fncFormatInputs();
+        
+                                </script>';
+                            
+                            } else {
+
+                                echo '<script>
+    
+                                
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "",
+                                    text: "' . $sendEmail . '",
+                                    timer: 5000,
+                                    showConfirmButton: false
+                                });
+
+                                fncMatPreloader("off");
+                                fncFormatInputs();
+
+                                </script>';
+                               
+                            }
                         }
                         
                 } else {
@@ -150,17 +209,18 @@ class AdminsController
                     
                     echo '<script>
     
-    Swal.fire({
-        icon: "error",
-        title: "",
-        text: "' . $error . '",
-        timer: 5000,
-        showConfirmButton: false
-    });
+                        Swal.fire({
+                            icon: "error",
+                            title: "",
+                            text: "' . $error . '",
+                            timer: 5000,
+                            showConfirmButton: false
+                        });
 
-    fncFormatInputs();
+                        fncMatPreloader("off");
+                        fncFormatInputs();
 
-    </script>';
+                        </script>';
                 }
             }
         }
