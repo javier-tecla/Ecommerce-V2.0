@@ -102,7 +102,8 @@ class AdminsController
     Recuperar contraseña
     =============================================== */
 
-    public function resetPassword() {
+    public function resetPassword()
+    {
 
         if (isset($_POST["resetPassword"])) {
 
@@ -117,27 +118,28 @@ class AdminsController
             Validamos la sintaxis de los campos
             =============================================== */
 
-            if(preg_match('/^[^\d][a-zA-Z0-9._]+@[a-zA-Z0-9._]+\.[a-zA-Z]{2,4}$/', $_POST["resetPassword"])) {
+            if (preg_match('/^[^\d][a-zA-Z0-9._]+@[a-zA-Z0-9._]+\.[a-zA-Z]{2,4}$/', $_POST["resetPassword"])) {
 
                 /*================================================
                 Preguntamos primero si el usuario está registrado
                 =============================================== */
 
-                $url = "admins?linkTo=email_admin&equalTo=".$_POST["resetPassword"]."&select=id_admin";
+                $url = "admins?linkTo=email_admin&equalTo=" . $_POST["resetPassword"] . "&select=id_admin";
                 $method = "GET";
                 $fields = array();
 
-                $admin = CurlController::request($url,$method,$fields);
-                
+                $admin = CurlController::request($url, $method, $fields);
+
                 if ($admin->status == 200) {
 
-                    function genPassword($length) {
-   
+                    function genPassword($length)
+                    {
+
                         $password = "";
                         $chain = "0123456789abcdefghijklmnopqrstuvwxyz";
-                        
-                        $password = substr(str_shuffle($chain),0,$length);
-                    
+
+                        $password = substr(str_shuffle($chain), 0, $length);
+
                         return $password;
                     }
 
@@ -145,28 +147,30 @@ class AdminsController
 
                     $crypt = crypt($newPassword, '$2a$07$azybxcags23425sdg23sdfhsd$');
 
-                        /*================================================
+                    /*================================================
                         Actualizar contraseña en base de datos
                         =============================================== */
-                        $url = "admins?id=".$admin->results[0]->id_admin."&nameId=id_admin&token=no&except=password_admin";
-                        $method = "PUT";
-                        $fields = "password_admin=".$crypt;
+                    $url = "admins?id=" . $admin->results[0]->id_admin . "&nameId=id_admin&token=no&except=password_admin";
+                    $method = "PUT";
+                    $fields = "password_admin=" . $crypt;
 
-                        $updatePassword = CurlController::request($url,$method,$fields);
+                    $updatePassword = CurlController::request($url, $method, $fields);
 
-                        if($updatePassword->status == 200) {
+                    if ($updatePassword->status == 200) {
 
 
-                            $subject = 'Solicitud de nueva contraseña - Clon-factory';
-                            $email = $_POST["resetPassword"];
-                            $message = 'Su nueva contraseña: '.$newPassword;
-                            $link = TemplateController::path().'admin';
+                        $subject = 'Solicitud de nueva contraseña - Clon-factory';
+                        $email = $_POST["resetPassword"];
+                        $title = 'SOLICITUD DE NUEVA CONTRASEÑA';
+                        $message = '<h4 style="font-weight: 100; color:#999; padding: 0px 20px;"><strong>Su nueva contraseña: ' . $newPassword . '</strong></h4>
+                                <h4 style="font-weight: 100; color:#999; padding: 0px 20px;">Ingrese nuevamente al sitio con esta contraseña y recuerde cambiarla en el panel de perfil de usuario</h4>';
+                        $link = TemplateController::path() . 'admin';
 
-                            $sendEmail = TemplateController::sendEmail($subject, $email, $message, $link);
+                        $sendEmail = TemplateController::sendEmail($subject, $email, $title, $message, $link);
 
-                            if ($sendEmail == "ok") {
+                        if ($sendEmail == "ok") {
 
-                                echo '<script>
+                            echo '<script>
     
                                 
                                 Swal.fire({
@@ -181,10 +185,9 @@ class AdminsController
                                 fncFormatInputs();
         
                                 </script>';
-                            
-                            } else {
+                        } else {
 
-                                echo '<script>
+                            echo '<script>
     
                                 
                                 Swal.fire({
@@ -199,14 +202,12 @@ class AdminsController
                                 fncFormatInputs();
 
                                 </script>';
-                               
-                            }
                         }
-                        
+                    }
                 } else {
 
                     $error = "El correo no está registrado";
-                    
+
                     echo '<script>
     
                         Swal.fire({
@@ -225,5 +226,4 @@ class AdminsController
             }
         }
     }
-
 }

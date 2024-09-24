@@ -1,4 +1,28 @@
-[22-Sep-2024 19:50:37 America/Argentina/Buenos_Aires] Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/TroubleshootingSMTP server error: Failed to connect to server Additional SMTP info: php_network_getaddresses: getaddrinfo for smtp.tu-dominio.com failed: Host desconocido. 
-[22-Sep-2024 19:52:00 America/Argentina/Buenos_Aires] Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/TroubleshootingSMTP server error: Failed to connect to server SMTP code: 10061 Additional SMTP info: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
-[22-Sep-2024 19:52:08 America/Argentina/Buenos_Aires] Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/TroubleshootingSMTP server error: Failed to connect to server SMTP code: 10061 Additional SMTP info: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
-[22-Sep-2024 19:52:12 America/Argentina/Buenos_Aires] Mailer Error: SMTP connect() failed. https://github.com/PHPMailer/PHPMailer/wiki/TroubleshootingSMTP server error: Failed to connect to server SMTP code: 10061 Additional SMTP info: No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión
+[23-Sep-2024 20:50:20 America/Argentina/Buenos_Aires] PHP Fatal error:  Uncaught PHPMailer\PHPMailer\Exception: SMTP Error: Could not authenticate. in C:\xampp\htdocs\ecommerce-clonfactory\web\extensions\vendor\phpmailer\phpmailer\src\PHPMailer.php:2265
+Stack trace:
+#0 C:\xampp\htdocs\ecommerce-clonfactory\web\extensions\vendor\phpmailer\phpmailer\src\PHPMailer.php(2062): PHPMailer\PHPMailer\PHPMailer->smtpConnect(Array)
+#1 C:\xampp\htdocs\ecommerce-clonfactory\web\extensions\vendor\phpmailer\phpmailer\src\PHPMailer.php(1689): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Mon, 23 S...', '--b1=_tIUWK1iPD...')
+#2 C:\xampp\htdocs\ecommerce-clonfactory\web\extensions\vendor\phpmailer\phpmailer\src\PHPMailer.php(1523): PHPMailer\PHPMailer\PHPMailer->postSend()
+#3 C:\xampp\htdocs\ecommerce-clonfactory\web\controllers\template.controller.php(67): PHPMailer\PHPMailer\PHPMailer->send()
+#4 C:\xampp\htdocs\ecommerce-clonfactory\web\controllers\admins.controller.php(165): TemplateController::sendEmail('Solicitud de nu...', 'admin@correo.co...', 'Su nueva contra...', 'http://clon-fac...')
+#5 C:\xampp\htdocs\ecommerce-clonfactory\web\views\pages\admin\login\login.php(119): AdminsController->resetPassword()
+#6 C:\xampp\htdocs\ecommerce-clonfactory\web\views\pages\admin\admin.php(7): include('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\ecommerce-clonfactory\web\views\template.php(179): include('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\ecommerce-clonfactory\web\controllers\template.controller.php(17): include('C:\\xampp\\htdocs...')
+#9 C:\xampp\htdocs\ecommerce-clonfactory\web\index.php(24): TemplateController->index()
+#10 {main}
+  thrown in C:\xampp\htdocs\ecommerce-clonfactory\web\extensions\vendor\phpmailer\phpmailer\src\PHPMailer.php on line 2265
+[23-Sep-2024 20:51:05 America/Argentina/Buenos_Aires] PHP Fatal error:  Uncaught PHPMailer\PHPMailer\Exception: SMTP Error: Could not authenticate. in C:\xampp\htdocs\ecommerce-clonfactory\web\extensions\vendor\phpmailer\phpmailer\src\PHPMailer.php:2265
+Stack trace:
+#0 C:\xampp\htdocs\ecommerce-clonfactory\web\extensions\vendor\phpmailer\phpmailer\src\PHPMailer.php(2062): PHPMailer\PHPMailer\PHPMailer->smtpConnect(Array)
+#1 C:\xampp\htdocs\ecommerce-clonfactory\web\extensions\vendor\phpmailer\phpmailer\src\PHPMailer.php(1689): PHPMailer\PHPMailer\PHPMailer->smtpSend('Date: Mon, 23 S...', '--b1=_mKspwRiKk...')
+#2 C:\xampp\htdocs\ecommerce-clonfactory\web\extensions\vendor\phpmailer\phpmailer\src\PHPMailer.php(1523): PHPMailer\PHPMailer\PHPMailer->postSend()
+#3 C:\xampp\htdocs\ecommerce-clonfactory\web\controllers\template.controller.php(67): PHPMailer\PHPMailer\PHPMailer->send()
+#4 C:\xampp\htdocs\ecommerce-clonfactory\web\controllers\admins.controller.php(165): TemplateController::sendEmail('Solicitud de nu...', 'admin@correo.co...', 'Su nueva contra...', 'http://clon-fac...')
+#5 C:\xampp\htdocs\ecommerce-clonfactory\web\views\pages\admin\login\login.php(119): AdminsController->resetPassword()
+#6 C:\xampp\htdocs\ecommerce-clonfactory\web\views\pages\admin\admin.php(7): include('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\ecommerce-clonfactory\web\views\template.php(179): include('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\ecommerce-clonfactory\web\controllers\template.controller.php(17): include('C:\\xampp\\htdocs...')
+#9 C:\xampp\htdocs\ecommerce-clonfactory\web\index.php(24): TemplateController->index()
+#10 {main}
+  thrown in C:\xampp\htdocs\ecommerce-clonfactory\web\extensions\vendor\phpmailer\phpmailer\src\PHPMailer.php on line 2265
