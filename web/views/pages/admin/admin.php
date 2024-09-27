@@ -8,7 +8,28 @@ if (!isset($_SESSION["admin"])) {
 
 } else {
 
-  include "tablero/tablero.php";
+  if(!empty($routesArray[1])) {
+
+    if($routesArray[1] == "administradores" || 
+       $routesArray[1] == "plantillas" || 
+       $routesArray[1] == "integraciones" ||
+       $routesArray[1] == "slides" || 
+       $routesArray[1] == "banners" ||
+       $routesArray[1] == "categorias" || 
+       $routesArray[1] == "subcategorias" ||
+       $routesArray[1] == "inventario" ||
+       $routesArray[1] == "mensajes") {
+
+    include $routesArray[1]."/".$routesArray[1].".php";
+
+    }
+
+  } else {
+
+    include "tablero/tablero.php";
+
+  }
+
 }
 
 ?>
