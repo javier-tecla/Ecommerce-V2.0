@@ -26,6 +26,12 @@ if (!isset($_SESSION["admin"])) {
 
     include $routesArray[1]."/".$routesArray[1].".php";
 
+    } else {
+
+      echo '<script>
+          window.location = "'.$path.'404";
+      </script>';
+
     }
 
   } else {
