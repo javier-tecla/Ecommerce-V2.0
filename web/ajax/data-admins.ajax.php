@@ -92,10 +92,10 @@ class DatatableController {
                     $date_updated_admin = $value->date_updated_admin;
 
                     $actions = "<div class='btn-group'>
-                                    <a href=' class='btn bg-purple border-0 rounded-pill mr-2 btn-sm px-3'>
+                                    <a href='' class='btn bg-purple border-0 rounded-pill mr-2 btn-sm px-3'>
                                         <i class='fas fa-pencil-alt text-white'></i>
                                     </a>
-                                    <a href=' class='btn btn-dark border-0 rounded-pill mr-2 btn-sm px-3'>
+                                    <a href='' class='btn btn-dark border-0 rounded-pill mr-2 btn-sm px-3'>
                                         <i class='fas fa-trash-alt text-white'></i>
                                     </a>
                                 </div>";
