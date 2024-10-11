@@ -55,14 +55,55 @@ class DatatableController {
             $select = "id_admin,rol_admin,name_admin,email_admin,date_updated_admin";
 
             /*================================================
-            Seleccionar datos
+            Búsqueda de datos
             =============================================== */
 
-            $url = "admins?select=".$select."&orderBy=".$orderBy."&orderMode=".$orderType."&startAt=".$start."&endAt=".$length;
-            $data = CurlController::request($url, $method, $fields)->results;
+            if(!empty($_POST['search']['value'])){
 
-            $recordsFiltered = $totalData;
-            
+                if(preg_match('/^[0-9A-Za-zñÑáéíóú ]{1,}$/',$_POST['search']['value'])) {
+
+                    $linkTo = ["name_admin","email_admin","rol_admin"];
+
+                    $search = str_replace(" ","_",$_POST['search']['value']);
+
+                    foreach ($linkTo as $key => $value) {
+                        
+                        $url = "admins?select=".$select."&linkTo=".$value."&search=".$search."&orderBy=".$orderBy."&orderMode=".$orderType."&startAt=".$start."&endAt=".$length;
+
+                        $data = CurlController::request($url, $method, $fields)->results;
+
+                        if($data == "Not Found"){
+
+                            $data = array();
+                            $recordsFiltered = 0;
+
+                        }else{
+
+                            $recordsFiltered = count($data);
+                            break;
+                        }
+                    }
+
+                }else{
+
+                    echo '{"data": []}';
+
+                    return;
+                }
+
+            }else{
+
+                
+                /*================================================
+                Seleccionar datos
+                =============================================== */
+                
+                $url = "admins?select=".$select."&orderBy=".$orderBy."&orderMode=".$orderType."&startAt=".$start."&endAt=".$length;
+                $data = CurlController::request($url, $method, $fields)->results;
+                
+                $recordsFiltered = $totalData;
+            }
+                
             /*================================================
             Cuando la data viene vaciá
             =============================================== */
