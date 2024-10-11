@@ -2,6 +2,22 @@ $("#tables").DataTable({
     "responsive":true,
     "aLengthMenu":[[10, 25, 50, 100],[10, 25, 50, 100]],
     "order":[[0, "desc"]],
+    "lengthChange": true,
+    "autoWidth": false,
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+        "url":$("#urlPath").val()+"ajax/data-admins.ajax.php",
+        "type": "POST"
+    },
+    "columns":[
+        {"data":"id_admin"}, 
+        {"data":"name_admin"},
+        {"data":"email_admin"},
+        {"data":"rol_admin"},
+        {"data":"date_updated_admin"},
+        {"data":"actions", "orderable":false, "searchable":false}
+    ],
     "language":{
 
         "sProcessing":      "Procesando...",
