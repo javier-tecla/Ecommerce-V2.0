@@ -39,8 +39,8 @@ $("#tables").DataTable({
             "sPrevious": "Anterior",
         },
         "oAria": {
-        "oSortAscending":   ": Activar para ordenar la columna de manera ascendente",
-        "oSortDescending":   ": Activar para ordenar la columna de manera descendente"
+        "sSortAscending":   ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending":   ": Activar para ordenar la columna de manera descendente"
          }
     }
     

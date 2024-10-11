@@ -44,7 +44,6 @@ class DatatableController {
             if($response->status == 200) {
 
                 $totalData = $response->total;
-                echo '<pre>'; print_r($totalData); echo '</pre>';
                 
             } else {
 
